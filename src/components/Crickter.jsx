@@ -10,7 +10,7 @@ const Crickter = ({ crickter }) => {
           <img
             src={crickter.playerImage}
             alt={crickter.playerName}
-            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            className="w-full p-4 h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
           />
 
           {/* Rating */}

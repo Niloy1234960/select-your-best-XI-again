@@ -13,7 +13,7 @@ const Loading = () => {
         {[...Array(8)].map((_, index) => (
           <div
             key={index}
-            className="rounded-xl border shadow-md overflow-hidden"
+            className="rounded-xl shadow-md overflow-hidden"
           >
             <div className="h-52 bg-gray-300 animate-pulse"></div>
 
