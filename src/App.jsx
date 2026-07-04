@@ -12,10 +12,13 @@ const cricketPlayersPromise = fetch("/cricket.json").then((res) => res.json());
 
 function App() {
   const [toggle, setToggle] = useState(true);
+  const [availableBalance, setAvailableBalance] = useState(6000000000)
+  const [choosePlayers, setChoosePlayers] = useState([])
+  
   return (
     <>
       <div>
-        <Navbar></Navbar>
+        <Navbar availableBalance={availableBalance}></Navbar>
         <HeroSection></HeroSection>
         <div className="flex justify-between items-center mt-8 max-w-[1200px] mx-auto">
           <h1 className="text-2xl font-bold">Available Players:</h1>
@@ -32,11 +35,15 @@ function App() {
         {toggle === true ? (
           <Suspense fallback={<Loading></Loading>}>
             <Crickters
+              choosePlayers={choosePlayers}
+              setChoosePlayers={setChoosePlayers}
               cricketPlayersPromise={cricketPlayersPromise}
+              setAvailableBalance={setAvailableBalance}
+              availableBalance={availableBalance}
             ></Crickters>
           </Suspense>
         ) : (
-          <SelectedPlayers></SelectedPlayers>
+          <SelectedPlayers choosePlayers={choosePlayers}></SelectedPlayers>
         )}
 
         <Footer></Footer>

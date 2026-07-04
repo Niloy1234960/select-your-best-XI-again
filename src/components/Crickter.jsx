@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
-const Crickter = ({ crickter }) => {
+const Crickter = ({
+  crickter,
+  setAvailableBalance,
+  availableBalance,
+  choosePlayers,
+  setChoosePlayers,
+}) => {
   // console.log(crickter);
+  const [isSelected, setIsSelected] = useState(false);
+
+  const handleSelected = (playerData) => {
+    const playerPrice = parseInt(crickter.price)
+    if (availableBalance < playerPrice) {
+      toast("Not Enough coins");
+      return;
+    }
+    (setIsSelected(true),
+      setAvailableBalance(availableBalance - playerPrice));
+      setChoosePlayers([...choosePlayers, playerData])
+  };
 
   return (
     <div className="">
@@ -68,8 +87,19 @@ const Crickter = ({ crickter }) => {
               </span>
             </div>
 
-            <button className="flex-1 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs py-2 px-2 rounded-xl shadow-lg shadow-cyan-600/20 hover:shadow-cyan-500/30 transition-all duration-300 active:scale-95">
-              Choose Player
+            <button
+              disabled={isSelected}
+              onClick={() => {handleSelected(crickter)}}
+              className={`
+                      flex-1 text-white font-semibold text-xs py-2 px-2 rounded-xl transition-all duration-300
+                     ${
+                       isSelected === true
+                         ? "bg-green-600 cursor-not-allowed opacity-80"
+                         : "bg-cyan-600 hover:bg-cyan-500 active:scale-95"
+                     }`}
+            >
+              <ToastContainer />
+              {isSelected === true ? "✓ Selected" : "Choose Player"}
             </button>
           </div>
         </div>

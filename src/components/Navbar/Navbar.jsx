@@ -2,7 +2,7 @@ import React from "react";
 import navImg from "../../assets/logo.png";
 import dollar from "../../assets/Currency (1).png";
 
-const Navbar = () => {
+const Navbar = ({availableBalance}) => {
   return (
     <nav className="sticky top-0 z-50 bg-[#0F172A] border-b border-slate-700 shadow-lg">
       <div className="max-w-[1200px] mx-auto flex items-center justify-between px-6 py-4">
@@ -88,7 +88,7 @@ const Navbar = () => {
           </button>
 
           <div className="flex items-center gap-2 bg-slate-800 border border-slate-600 rounded-full px-4 py-2 hover:border-amber-400 duration-300">
-            <span className="font-bold text-white">6,000,000</span>
+            <span className="font-bold text-white">{availableBalance}</span>
 
             <span className="text-slate-300">Coin</span>
 
