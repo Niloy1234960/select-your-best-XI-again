@@ -12,21 +12,35 @@ const cricketPlayersPromise = fetch("/cricket.json").then((res) => res.json());
 
 function App() {
   const [toggle, setToggle] = useState(true);
-  const [availableBalance, setAvailableBalance] = useState(6000000000)
-  const [choosePlayers, setChoosePlayers] = useState([])
-  
+  const [availableBalance, setAvailableBalance] = useState(6000000000);
+  const [choosePlayers, setChoosePlayers] = useState([]);
+
   return (
     <>
       <div>
         <Navbar availableBalance={availableBalance}></Navbar>
         <HeroSection></HeroSection>
-        <div className="flex justify-between items-center mt-8 max-w-[1200px] mx-auto">
-          <h1 className="text-2xl font-bold">Available Players:</h1>
-          <div>
-            <button onClick={()=> setToggle(true)} className={`border-2 border-gray-400  py-3 px-4 rounded-l-xl font-semibold  border-r-0 ${toggle === true ? "bg-[#E7FF29]" : ""}`}>
+        <div className="max-w-[1200px] mx-auto mt-8 flex flex-col sm:flex-row justify-between items-center gap-4 px-4">
+          <h1 className="text-xl sm:text-2xl font-bold text-center sm:text-left">
+            Available Players:
+          </h1>
+
+          <div className="flex w-full sm:w-auto">
+            <button
+              onClick={() => setToggle(true)}
+              className={`flex-1 sm:flex-none border-2 border-gray-400 py-3 px-4 rounded-l-xl font-semibold border-r-0 transition ${
+                toggle === true ? "bg-[#E7FF29]" : ""
+              }`}
+            >
               Available
             </button>
-            <button onClick={()=> setToggle(false)} className={`border-2 border-gray-400 py-3 px-4 rounded-r-xl font-semibold border-l-0 ${toggle === false ? "bg-[#E7FF29]" : ""}`}>
+
+            <button
+              onClick={() => setToggle(false)}
+              className={`flex-1 sm:flex-none border-2 border-gray-400 py-3 px-4 rounded-r-xl font-semibold border-l-0 transition ${
+                toggle === false ? "bg-[#E7FF29]" : ""
+              }`}
+            >
               Selected <span>(0)</span>
             </button>
           </div>
